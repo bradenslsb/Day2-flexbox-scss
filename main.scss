@@ -1,0 +1,64 @@
+
+
+@mixin flexbox($flex: false, $justify-content: false, $flex-direction: false, $align-items: false ) {
+    display: flex;
+    @if $flex != false {
+      flex: $flex;
+    }
+    @if $justify-content != false {
+      justify-content: $justify-content;
+    }
+    @if $flex-direction != false {
+      flex-direction: $flex-direction;
+    }
+    @if $align-items != false {
+      align-items: $align-items;
+    }
+    
+  }
+  
+  .container {
+    @include flexbox;
+    
+    .item {
+      @include flexbox($flex: 1, $justify-content: space-between);
+      
+      border: 1px solid grey;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      .content {
+        @include flexbox;
+        .metadata {
+          @include flexbox($flex-direction: column, $justify-content: center);
+          
+          margin-left: 20px;
+          .title {
+            margin: 0px;
+          }
+        }
+      }
+      .btn-group {
+        @include flexbox($align-items: center);
+        
+        .button {
+          @include flexbox( $justify-content: center, $align-items: center, $flex-direction: row);
+          height: 100%;
+          
+          width: 42px;
+       
+          font-size: 2em;
+          a {
+            color: green;
+            text-decoration: none;
+          }
+          &:hover {
+            background-color: maroon;
+            cursor: pointer;
+            a {
+             color: white; 
+            }
+          }
+        }
+      }
+    }
+  }
